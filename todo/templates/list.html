@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}list Page{% endblock %}
+{% block content %}
+{% if todo %}
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Slno</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in todo %}
+       <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{todo.title}}</td>
+      <td>{{todo.desc}}</td>
+      <td><a href="{% url 'update' todo.pk  %}"><button type="button" class="btn btn-outline-success">Update</button></a>
+      <a href="{% url 'delete' todo.pk  %}"><button type="button" class="btn btn-outline-danger">Delete</button></td></a>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+ <center><h2><a href="{% url 'add' %}">addtodo</a></h2></center>
+
+{% endif %}
+
+{% endblock content %}

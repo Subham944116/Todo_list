@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+ {% if todo %}
+  Update {{todo.pk}}
+  {% else %}
+AddTodo Page
+{% endif %}
+{% endblock %}
+{% block content %}
+   <form method="post">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label for="Title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title of the Todo" name="title" value="{{ todo.title }}">
+  </div>
+  <div class="mb-3">
+    <label for="Desciption" class="form-label">Desciption</label>
+   <input type="text" class="form-control" id="desc" name="desc" value="{{ todo.desc }}">
+  </div>
+   {% if todo %}
+  <button type="submit" class="btn btn-primary">Update</button>
+   {% else %}
+    <button type="submit" class="btn btn-primary">Add</button>
+    {% endif %}
+
+</form>
+{% endblock content %}
